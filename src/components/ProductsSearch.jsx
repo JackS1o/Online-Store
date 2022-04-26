@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { BsCart } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import SideBarCategorias from './SideBarCategorias';
 
@@ -52,6 +54,12 @@ class ProductsSearch extends Component {
         >
           Pesquisar
         </button>
+        <Link
+          to="/ShoppingCart"
+          data-testid="shopping-cart-button"
+        >
+          <BsCart />
+        </Link>
         { searchItens.length === 0 && <p>Nenhum produto foi encontrado</p>}
         <div>
           {searchItens.map((item, index) => (
