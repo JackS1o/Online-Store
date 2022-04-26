@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SideBarCategorias from './SideBarCategorias';
 
 class ProductsSearch extends Component {
   render() {
@@ -15,6 +16,7 @@ class ProductsSearch extends Component {
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h2>
+        <SideBarCategorias />
       </div>
     );
   }
