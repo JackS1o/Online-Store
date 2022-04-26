@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import SideBarCategorias from './SideBarCategorias';
 
 class ProductsSearch extends Component {
   constructor() {
@@ -61,6 +62,9 @@ class ProductsSearch extends Component {
             </div>
           ))}
         </div>
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </h2>
+        <SideBarCategorias />
       </div>
     );
   }
