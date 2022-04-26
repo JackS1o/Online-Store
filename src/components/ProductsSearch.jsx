@@ -62,6 +62,7 @@ class ProductsSearch extends Component {
             </div>
           ))}
         </div>
+        <h2>
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h2>
         <SideBarCategorias />
