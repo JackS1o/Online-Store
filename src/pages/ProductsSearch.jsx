@@ -49,39 +49,42 @@ class ProductsSearch extends Component {
   render() {
     const { inputValue, searchItens, notFound } = this.state;
     return (
-      <div className="search page">
+      <div className="search-page">
         <h2
           data-testid="home-initial-message"
+          className="h2-home"
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h2>
-        <label htmlFor="product-input">
+        <label htmlFor="product-input" className="label-input">
           <input
+            className="search-input"
             type="text"
             value={ inputValue }
             id="product-input"
             onChange={ this.searchApi }
             data-testid="query-input"
           />
+          <button
+            className="search-btn"
+            data-testid="query-button"
+            type="button"
+            onClick={ this.searchButton }
+          >
+            Pesquisar
+          </button>
+          <Link
+            to="/ShoppingCart"
+            data-testid="shopping-cart-button"
+          >
+            <BsCart />
+          </Link>
         </label>
-        <button
-          data-testid="query-button"
-          type="button"
-          onClick={ this.searchButton }
-        >
-          Pesquisar
-        </button>
-        <Link
-          to="/ShoppingCart"
-          data-testid="shopping-cart-button"
-        >
-          <BsCart />
-        </Link>
         {notFound && <p>Nenhum produto foi encontrado</p>}
-        <div>
-          <CardItens searchItens={ searchItens } />
+        <div className="cardItems-sideBar">
+          <SideBarCategorias handleChange={ this.handleChange } />
+          <CardItens searchItens={ searchItens } className="cardItems" />
         </div>
-        <SideBarCategorias handleChange={ this.handleChange } />
       </div>
     );
   }

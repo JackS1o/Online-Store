@@ -5,11 +5,11 @@ class CardItens extends Component {
   render() {
     const { searchItens } = this.props;
     return (
-      <div>
+      <div className="div-mae-card">
         {searchItens.map((item, index) => (
-          <div key={ index } data-testid="product">
+          <div key={ index } data-testid="product" className="div-card">
             <p>{ item.title }</p>
-            <img src={ item.thumbnail } alt="Imagem" />
+            <img src={ item.thumbnail } alt="Imagem" className="img-card" />
             <p>{ item.price }</p>
           </div>
         ))}

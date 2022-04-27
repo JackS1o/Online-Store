@@ -36,7 +36,7 @@ class SideBarCategorias extends Component {
 
   render() {
     return (
-      <aside>
+      <aside className="sideBar">
         {this.criarSideBar()}
       </aside>
     );
