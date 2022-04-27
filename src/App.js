@@ -4,16 +4,46 @@ import ProductsSearch from './pages/ProductsSearch';
 import ShoppingCart from './pages/ShoopingCart';
 import Checkout from './pages/Checkout';
 
-function App() {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={ ProductsSearch } />
-        <Route exact path="/ShoppingCart" component={ ShoppingCart } />
-        <Route exact path="/Checkout" component={ Checkout } />
-      </Switch>
-    </BrowserRouter>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      productList: [],
+    };
+  }
+
+  handleClick = (elem) => {
+    this.setState((prev) => ({ productList: [...prev.productList, elem] }), () => {
+    });
+  }
+
+  render() {
+    const { productList } = this.state;
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={ (props) => (<ProductsSearch
+              { ...props }
+              handleClick={ this.handleClick }
+            />) }
+          />
+          <Route
+            exact
+            path="/ShoppingCart"
+            render={ (props) => (<ShoppingCart
+              { ...props }
+              productList={ productList }
+            />) }
+          />
+          <Route exact path="/Checkout" component={ Checkout } />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BsCart } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getProductsFromQuery, getProductsFromCategoryId } from '../services/api';
 import SideBarCategorias from '../components/SideBarCategorias';
 import CardItens from '../components/CardItens';
@@ -47,6 +48,7 @@ class ProductsSearch extends Component {
   }
 
   render() {
+    const { handleClick } = this.props;
     const { inputValue, searchItens, notFound } = this.state;
     return (
       <div className="search-page">
@@ -83,11 +85,19 @@ class ProductsSearch extends Component {
         {notFound && <p>Nenhum produto foi encontrado</p>}
         <div className="cardItems-sideBar">
           <SideBarCategorias handleChange={ this.handleChange } />
-          <CardItens searchItens={ searchItens } className="cardItems" />
+          <CardItens
+            handleClick={ handleClick }
+            searchItens={ searchItens }
+            className="cardItems"
+          />
         </div>
       </div>
     );
   }
 }
+
+ProductsSearch.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+};
 
 export default ProductsSearch;
