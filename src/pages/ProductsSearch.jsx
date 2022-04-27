@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BsCart } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import { getProductsFromQuery, getProductsFromCategoryId } from '../services/api';
 import SideBarCategorias from '../components/SideBarCategorias';
 import CardItens from '../components/CardItens';
 
@@ -24,7 +24,7 @@ class ProductsSearch extends Component {
 
   searchButton = async () => {
     const { inputValue } = this.state;
-    const data = await getProductsFromCategoryAndQuery(inputValue);
+    const data = await getProductsFromQuery(inputValue);
     if (data.results.length === 0) {
       this.setState({
         notFound: true,
@@ -36,6 +36,14 @@ class ProductsSearch extends Component {
         notFound: false,
       });
     }
+  }
+
+  handleChange = ({ target }) => {
+    const { id } = target;
+    this.setState(async () => {
+      const promisse = await getProductsFromCategoryId(id);
+      this.setState({ searchItens: promisse.results, notFound: false });
+    });
   }
 
   render() {
@@ -73,7 +81,7 @@ class ProductsSearch extends Component {
         <div>
           <CardItens searchItens={ searchItens } />
         </div>
-        <SideBarCategorias />
+        <SideBarCategorias handleChange={ this.handleChange } />
       </div>
     );
   }
