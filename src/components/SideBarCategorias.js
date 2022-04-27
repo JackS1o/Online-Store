@@ -12,7 +12,6 @@ class SideBarCategorias extends Component {
 
   async componentDidMount() {
     const promisse = await getCategories();
-    console.log(promisse);
     this.setState({
       categorias: promisse,
     });
@@ -26,7 +25,7 @@ class SideBarCategorias extends Component {
         { categoria.name }
         <input
           type="radio"
-          name={ categoria.name }
+          name="categorias"
           id="categoria"
         />
       </label>
