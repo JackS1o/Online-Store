@@ -3,8 +3,15 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class CardItens extends Component {
+  constructor() {
+    super();
+    this.state = {
+
+    };
+  }
+
   render() {
-    const { searchItens } = this.props;
+    const { searchItens, handleClick } = this.props;
     return (
       <div className="div-mae-card">
         {searchItens.map((item, index) => (
@@ -14,9 +21,15 @@ class CardItens extends Component {
               <img src={ item.thumbnail } alt="Imagem" className="img-card" />
               <p>{ item.price }</p>
             </Link>
+            <button
+              data-testid="product-add-to-cart"
+              onClick={ () => handleClick(item) }
+              type="button"
+            >
+              Adicionar ao Carrinho
+            </button>
           </div>
         ))}
-
       </div>
     );
   }
@@ -28,6 +41,7 @@ CardItens.propTypes = {
     thumbnail: PropTypes.string,
     price: PropTypes.number,
   })).isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default CardItens;
