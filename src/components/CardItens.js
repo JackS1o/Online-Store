@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class CardItens extends Component {
@@ -15,9 +16,11 @@ class CardItens extends Component {
       <div className="div-mae-card">
         {searchItens.map((item, index) => (
           <div key={ index } data-testid="product" className="div-card">
-            <p>{ item.title }</p>
-            <img src={ item.thumbnail } alt="Imagem" className="img-card" />
-            <p>{ item.price }</p>
+            <Link to={ `/details/${item.id}` } data-testid="product-detail-link">
+              <p>{ item.title }</p>
+              <img src={ item.thumbnail } alt="Imagem" className="img-card" />
+              <p>{ item.price }</p>
+            </Link>
             <button
               data-testid="product-add-to-cart"
               onClick={ () => handleClick(item) }
