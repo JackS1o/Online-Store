@@ -40,7 +40,13 @@ class App extends React.Component {
             />) }
           />
           <Route exact path="/Checkout" component={ Checkout } />
-          <Route path="/details/:id" component={ Details } />
+          <Route
+            path="/details/:id"
+            render={ (props) => (<Details
+              { ...props }
+              handleClick={ this.handleClick }
+            />) }
+          />
         </Switch>
       </BrowserRouter>
     );
