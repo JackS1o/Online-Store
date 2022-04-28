@@ -10,7 +10,6 @@ class ShoppingCart extends Component {
       <div>
         <Link
           to="/"
-          data-testid="shopping-cart-button"
         >
           <BsFillArrowLeftCircleFill />
           <BsCart />
@@ -22,11 +21,12 @@ class ShoppingCart extends Component {
           {productList.map((elem) => (
             <div
               key={ elem.title }
-              className="card-carrinh"
+              className="card-carrinho"
             >
               <p data-testid="shopping-cart-product-name">{ elem.title }</p>
               <img src={ elem.thumbnail } alt="Imagem" className="img-card" />
               <p>{ elem.price }</p>
+              <button data-testid="shopping-cart-button" type="button">adicionar</button>
             </div>
           ))}
         </div>
