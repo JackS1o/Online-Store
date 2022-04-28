@@ -14,13 +14,16 @@ class ShoppingCart extends Component {
           <BsFillArrowLeftCircleFill />
           <BsCart />
         </Link>
-        <h1 data-testid="shopping-cart-empty-message">
-          Seu carrinho está vazio.
-        </h1>
+        {productList.length === 0
+        && <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio.</h1>}
         <p data-testid="shopping-cart-product-quantity">{productList.length}</p>
-        <div>
+        <div className="div-mae-card-carrinho">
           {productList.map((elem) => (
-            <div key={ elem.title } data-testid="shopping-cart-product-name">
+            <div
+              key={ elem.title }
+              data-testid="shopping-cart-product-name"
+              className="card-carrinho"
+            >
               <p>{ elem.title }</p>
               <img src={ elem.thumbnail } alt="Imagem" className="img-card" />
               <p>{ elem.price }</p>

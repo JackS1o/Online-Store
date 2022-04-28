@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { getProductsFromQuery, getProductsFromCategoryId } from '../services/api';
 import SideBarCategorias from '../components/SideBarCategorias';
 import CardItens from '../components/CardItens';
+import Loading from '../components/Loading';
 
 class ProductsSearch extends Component {
   constructor() {
@@ -13,6 +14,7 @@ class ProductsSearch extends Component {
       notFound: false,
       inputValue: '',
       searchItens: [],
+      load: false,
     };
   }
 
@@ -25,16 +27,19 @@ class ProductsSearch extends Component {
 
   searchButton = async () => {
     const { inputValue } = this.state;
+    this.setState({ load: true });
     const data = await getProductsFromQuery(inputValue);
     if (data.results.length === 0) {
       this.setState({
         notFound: true,
         searchItens: [],
+        load: false,
       });
     } else {
       this.setState({
         searchItens: data.results,
         notFound: false,
+        load: false,
       });
     }
   }
@@ -42,22 +47,25 @@ class ProductsSearch extends Component {
   handleChange = ({ target }) => {
     const { id } = target;
     this.setState(async () => {
+      this.setState({ load: true });
       const promisse = await getProductsFromCategoryId(id);
-      this.setState({ searchItens: promisse.results, notFound: false });
+      this.setState({ searchItens: promisse.results, notFound: false, load: false });
     });
   }
 
   render() {
     const { handleClick } = this.props;
-    const { inputValue, searchItens, notFound } = this.state;
+    const { inputValue, searchItens, notFound, load } = this.state;
     return (
       <div className="search-page">
-        <h2
-          data-testid="home-initial-message"
-          className="h2-home"
-        >
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h2>
+        <header>
+          <h2
+            data-testid="home-initial-message"
+            className="h2-home"
+          >
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </h2>
+        </header>
         <label htmlFor="product-input" className="label-input">
           <input
             className="search-input"
@@ -85,11 +93,14 @@ class ProductsSearch extends Component {
         {notFound && <p>Nenhum produto foi encontrado</p>}
         <div className="cardItems-sideBar">
           <SideBarCategorias handleChange={ this.handleChange } />
-          <CardItens
-            handleClick={ handleClick }
-            searchItens={ searchItens }
-            className="cardItems"
-          />
+          {load ? <Loading />
+            : (
+              <CardItens
+                handleClick={ handleClick }
+                searchItens={ searchItens }
+                className="cardItems"
+              />
+            )}
         </div>
       </div>
     );
