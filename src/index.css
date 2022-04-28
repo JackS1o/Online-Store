@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgba(236, 233, 233, 0.897);
 }
 
 code {
@@ -15,11 +16,11 @@ code {
 .sideBar {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 250px;
 }
 
 
-.label-input {
+.label-input, header {
   display: flex;
   justify-content: center;
 }
@@ -28,8 +29,16 @@ code {
   display: flex;
 }
 
-.div-card {
-  width: 150px;
+.div-card, .card-carrinho {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid rgba(109, 91, 91, 0);
+  border-radius: 5%;
+  background-color: white;
+  height: 300px;
+  width: 200px;
 }
 
 .img-card {
@@ -41,7 +50,14 @@ code {
   display: flex;
 }
 
-.div-mae-card {
+.div-mae-card, .div-mae-card-carrinho {
   display: flex;
+  margin-top: 5%;
   flex-wrap: wrap;
+  gap: 20px 20px;
+}
+
+.div-load {
+  margin-left: 20%;
+  align-self: center;
 }

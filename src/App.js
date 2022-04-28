@@ -15,8 +15,7 @@ class App extends React.Component {
   }
 
   handleClick = (elem) => {
-    this.setState((prev) => ({ productList: [...prev.productList, elem] }), () => {
-    });
+    this.setState((prev) => ({ productList: [...prev.productList, elem] }));
   }
 
   render() {
