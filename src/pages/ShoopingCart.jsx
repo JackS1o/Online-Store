@@ -7,12 +7,20 @@ class ShoppingCart extends Component {
   constructor() {
     super();
     this.state = {
-      d: '',
+      contador: 0,
     };
   }
 
-  componentDidMount() {
-    this.func();
+  handleClickMenos = () => {
+    this.setState((prevState) => ({
+      contador: prevState.contador - 1,
+    }));
+  }
+
+  handleClickMais = () => {
+    this.setState((prevState) => ({
+      contador: prevState.contador + 1,
+    }));
   }
 
   func = (x) => {
@@ -29,6 +37,7 @@ class ShoppingCart extends Component {
 
     const a = productList.filter((este, i) => productList.indexOf(este) === i);
     console.log(d);
+    const { contador } = this.state;
     return (
       <div>
         <Link
@@ -50,17 +59,30 @@ class ShoppingCart extends Component {
               <p data-testid="shopping-cart-product-name">{ elem.title }</p>
               <img src={ elem.thumbnail } alt="Imagem" className="img-card" />
               <p>{ elem.price }</p>
-              <button
-                onClick={ () => this.func(elem) }
-                type="button"
-              />
-              <p>
-                  {d}
-                </p>
+              <div>
+                <button
+                  data-testid="product-increase-quantity"
+                  type="button"
+                  disabled={ contador < 1 }
+                  onClick={ this.handleClickMenos }
+                >
+                  -
+
+                </button>
+                <p>{ contador }</p>
+                <button
+                  data-testid="product-decrease-quantity"
+                  type="button"
+                  onClick={ this.handleClickMais }
+                >
+                  +
+
+                </button>
+              </div>
             </div>
           ))}
         </div>
-        <button data-testid="shopping-cart-button" type="button">adicionar</button>
+        <button data-testid="shopping-cart-button" type="button">Finalizar Compra</button>
       </div>
     );
   }
