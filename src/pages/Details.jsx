@@ -28,6 +28,7 @@ class Details extends Component {
   }
 
   cardConstructor = () => {
+    const { handleClick } = this.props;
     const { product, atributo } = this.state;
     return (
       <div>
@@ -35,7 +36,14 @@ class Details extends Component {
         <img src={ product.thumbnail } alt="Imagem" className="img-card-details" />
         <p>{ product.price }</p>
         <Link to="/ShoppingCart">
-          <button type="button">Adicionar ao carrinho</button>
+          <button
+            type="button"
+            onClick={ () => handleClick(product) }
+            data-testid="product-detail-add-to-cart"
+          >
+            Adicionar ao carrinho
+
+          </button>
         </Link>
         <hr />
         {atributo.map((atribut, index) => (
@@ -62,6 +70,7 @@ Details.propTypes = {
       id: PropTypes.string,
     }),
   }).isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default Details;
