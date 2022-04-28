@@ -15,15 +15,13 @@ class ShoppingCart extends Component {
   handleClickMenos = () => {
     this.setState((prevState) => ({
       contador: prevState.contador - 1,
-    }), () => {
-    });
+    }));
   }
 
   handleClickMais = () => {
     this.setState((prevState) => ({
       contador: prevState.contador + 1,
-    }), () => {
-    });
+    }));
   }
 
   render() {
