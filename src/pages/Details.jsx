@@ -32,7 +32,9 @@ class Details extends Component {
     const { product, atributo } = this.state;
     return (
       <div>
-        <p data-testid="product-detail-name">{ product.title }</p>
+        <p data-testid="product-detail-name">
+          { product.title }
+        </p>
         <img src={ product.thumbnail } alt="Imagem" className="img-card-details" />
         <p>{ product.price }</p>
         <Link to="/ShoppingCart">
@@ -46,11 +48,13 @@ class Details extends Component {
           </button>
         </Link>
         <hr />
-        {atributo.map((atribut, index) => (
-          <div key={ index }>
-            <span>{`${atribut.name}: ${atribut.value_name}`}</span>
-          </div>
-        ))}
+        <div>
+          {atributo.map((atribut, index) => (
+            <div key={ index }>
+              <span>{`${atribut.name}: ${atribut.value_name}`}</span>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
