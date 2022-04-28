@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 class ShoppingCart extends Component {
   constructor() {
     super();
-
     this.state = {
       contador: 0,
     };
