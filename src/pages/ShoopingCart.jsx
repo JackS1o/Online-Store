@@ -2,30 +2,19 @@ import React, { Component } from 'react';
 import { BsCart, BsFillArrowLeftCircleFill } from 'react-icons/bs';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Teste from '../components/ProductsCart';
 
 class ShoppingCart extends Component {
   constructor() {
     super();
     this.state = {
-      contador: 1,
     };
   }
 
-  handleClickMenos = () => {
-    this.setState((prevState) => ({
-      contador: prevState.contador - 1,
-    }));
-  }
-
-  handleClickMais = () => {
-    this.setState((prevState) => ({
-      contador: prevState.contador + 1,
-    }));
-  }
-
   render() {
-    const { productList } = this.props;
-    const { contador } = this.state;
+    const { productList, cardUpdate } = this.props;
+    const newArray = productList.filter((este, i) => productList.indexOf(este) === i);
+    // https://pt.stackoverflow.com/questions/16483/remover-elementos-repetido-dentro-de-um-array-em-javascript#:~:text=O%20que%20este%20c%C3%B3digo%20faz,indice%20que%20a%20fun%C3%A7%C3%A3o%20passa.
     return (
       <div>
         <Link
@@ -36,40 +25,24 @@ class ShoppingCart extends Component {
         </Link>
         {productList.length === 0
         && <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio.</h1>}
-        <p data-testid="shopping-cart-product-quantity">{productList.length}</p>
         <div className="div-mae-card-carrinho">
-          {productList.map((elem) => (
-            <div
-              key={ elem.title }
-              className="card-carrinho"
-            >
-              <p data-testid="shopping-cart-product-name">{ elem.title }</p>
-              <img src={ elem.thumbnail } alt="Imagem" className="img-card" />
-              <p>{ elem.price }</p>
-              <div>
-                <button
-                  data-testid="product-increase-quantity"
-                  type="button"
-                  disabled={ contador <= 1 }
-                  onClick={ this.handleClickMenos }
-                >
-                  -
-
-                </button>
-                <p>{ contador }</p>
-                <button
-                  data-testid="product-decrease-quantity"
-                  type="button"
-                  onClick={ this.handleClickMais }
-                >
-                  +
-
-                </button>
-              </div>
-            </div>
+          {newArray.map((elem, index) => (
+            <Teste
+              elem={ elem }
+              key={ index }
+              productList={ productList }
+              cardUpdate={ cardUpdate }
+            />
           ))}
         </div>
-        <button data-testid="shopping-cart-button" type="button">Finalizar Compra</button>
+        <div>
+          <button
+            data-testid="shopping-cart-button"
+            type="button"
+          >
+            Finalizar Compra
+          </button>
+        </div>
       </div>
     );
   }
@@ -77,6 +50,7 @@ class ShoppingCart extends Component {
 
 ShoppingCart.propTypes = {
   productList: PropTypes.arrayOf(Object).isRequired,
+  cardUpdate: PropTypes.func.isRequired,
 };
 
 export default ShoppingCart;

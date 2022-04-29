@@ -11,6 +11,7 @@ class App extends React.Component {
 
     this.state = {
       productList: [],
+      renderState: [],
     };
   }
 
@@ -18,8 +19,15 @@ class App extends React.Component {
     this.setState((prev) => ({ productList: [...prev.productList, elem] }));
   }
 
-  render() {
+  cardUpdate = (x) => {
     const { productList } = this.state;
+    const d = productList.filter((i) => i.id !== x.id);
+    console.log(d);
+    this.setState({ productList: d });
+  }
+
+  render() {
+    const { productList, renderState } = this.state;
     return (
       <BrowserRouter>
         <Switch>
@@ -37,6 +45,8 @@ class App extends React.Component {
             render={ (props) => (<ShoppingCart
               { ...props }
               productList={ productList }
+              cardUpdate={ this.cardUpdate }
+              renderState={ renderState }
             />) }
           />
           <Route exact path="/Checkout" component={ Checkout } />
