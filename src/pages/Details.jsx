@@ -26,7 +26,6 @@ class Details extends Component {
       this.setState({
         evaluationSubmited: ratingElements,
       });
-      console.log(evaluationSubmited);
     }
     this.getProduct();
   }
@@ -78,15 +77,10 @@ class Details extends Component {
   handleSubmitClick = (event) => {
     event.preventDefault();
     const { email, rating, evaluation } = this.state;
-    // console.log(email, rating, evaluation);
-    // localStorage.setItem('email', email);
-    // localStorage.setItem('nota', rating);
-    // localStorage.setItem('avaliação', evaluation);
     this.setState({
       evaluationSubmited: [email, rating, evaluation],
     }, () => {
       const { evaluationSubmited } = this.state;
-      // console.log(evaluationSubmited);
       localStorage.setItem('submited-rate', evaluationSubmited);
       this.setState({
         email: '',
@@ -102,7 +96,6 @@ class Details extends Component {
       atributo,
       disabled,
       email,
-      // rating,
       evaluation,
       evaluationSubmited,
     } = this.state;
@@ -152,7 +145,6 @@ class Details extends Component {
                 htmlFor={ rate }
                 key={ index }
               >
-                {/* { rate } */}
                 <BsFillStarFill />
                 <input
                   id={ rate }

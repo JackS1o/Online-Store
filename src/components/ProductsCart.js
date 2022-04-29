@@ -27,7 +27,6 @@ class Teste extends React.Component {
     const { contador } = this.state;
     return (
       <div
-        data-testid="shopping-cart-product-name"
         className="card-carrinho"
       >
         <p data-testid="shopping-cart-product-name">{ elem.title }</p>
