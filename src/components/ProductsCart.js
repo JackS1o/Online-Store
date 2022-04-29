@@ -35,7 +35,7 @@ class Teste extends React.Component {
         <p>{ elem.price }</p>
         <button
           id={ elem.id }
-          data-testid="product-increase-quantity"
+          data-testid="product-decrease-quantity"
           type="button"
           disabled={ contador < 1 }
           onClick={ this.handleClickMenos }
@@ -45,7 +45,7 @@ class Teste extends React.Component {
         <p data-testid="shopping-cart-product-quantity">{ contador }</p>
         <button
           id={ elem.id }
-          data-testid="product-decrease-quantity"
+          data-testid="product-increase-quantity"
           type="button"
           onClick={ this.handleClickMais }
         >
@@ -77,6 +77,7 @@ Teste.propTypes = {
     price: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
   }).isRequired,
+  cardUpdate: PropTypes.func.isRequired,
 };
 
 export default Teste;
