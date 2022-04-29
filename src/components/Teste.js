@@ -10,12 +10,6 @@ class Teste extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.cardUpdate();
-  //   this.handleClickMais();
-  //   this.handleClickMenos();
-  // }
-
   handleClickMenos = () => {
     this.setState((prevState) => ({
       contador: prevState.contador - 1,
@@ -28,14 +22,8 @@ class Teste extends React.Component {
     }));
   }
 
-  cardUpdate = (x) => {
-    const { a } = this.props;
-    const d = a.filter((i) => i.id !== x);
-    console.log(d);
-  }
-
   render() {
-    const { elem } = this.props;
+    const { elem, cardUpdate } = this.props;
     const { contador } = this.state;
     return (
       <div
@@ -66,7 +54,7 @@ class Teste extends React.Component {
         <div>
           <button
             type="button"
-            onClick={ () => this.cardUpdate(elem.id) }
+            onClick={ () => cardUpdate(elem) }
           >
             Remover
           </button>
@@ -83,7 +71,7 @@ Teste.propTypes = {
     price: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
   }).isRequired,
-  a: PropTypes.shape({
+  productList: PropTypes.shape({
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
