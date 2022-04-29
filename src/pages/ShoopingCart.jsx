@@ -7,7 +7,7 @@ class ShoppingCart extends Component {
   constructor() {
     super();
     this.state = {
-      contador: 0,
+      contador: 1,
     };
   }
 
@@ -50,7 +50,7 @@ class ShoppingCart extends Component {
                 <button
                   data-testid="product-increase-quantity"
                   type="button"
-                  disabled={ contador < 1 }
+                  disabled={ contador <= 1 }
                   onClick={ this.handleClickMenos }
                 >
                   -
