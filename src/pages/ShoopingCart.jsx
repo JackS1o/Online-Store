@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BsCart, BsFillArrowLeftCircleFill } from 'react-icons/bs';
+import { BsCart4, BsFillArrowLeftCircleFill } from 'react-icons/bs';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Teste from '../components/ProductsCart';
@@ -19,9 +19,10 @@ class ShoppingCart extends Component {
       <div>
         <Link
           to="/"
+          className="link-back-card"
         >
           <BsFillArrowLeftCircleFill />
-          <BsCart />
+          <BsCart4 />
         </Link>
         {productList.length === 0
         && <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio.</h1>}
@@ -39,6 +40,7 @@ class ShoppingCart extends Component {
           <button
             data-testid="shopping-cart-button"
             type="button"
+            className="finalizar"
           >
             Finalizar Compra
           </button>

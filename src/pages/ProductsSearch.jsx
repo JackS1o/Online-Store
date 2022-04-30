@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BsCart } from 'react-icons/bs';
+import { BsCart4 } from 'react-icons/bs';
+import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getProductsFromQuery, getProductsFromCategoryId } from '../services/api';
@@ -81,17 +82,20 @@ class ProductsSearch extends Component {
             type="button"
             onClick={ this.searchButton }
           >
-            Pesquisar
+            <FaSearch />
           </button>
           <Link
+            className="link-card"
             to="/ShoppingCart"
             data-testid="shopping-cart-button"
           >
-            <BsCart />
+            <BsCart4 />
           </Link>
         </label>
-        {notFound && <p>Nenhum produto foi encontrado</p>}
         <div className="cardItems-sideBar">
+          <div className="notFound">
+            {notFound && <h1>Nenhum produto foi encontrado</h1>}
+          </div>
           <SideBarCategorias handleChange={ this.handleChange } />
           {load ? <Loading />
             : (

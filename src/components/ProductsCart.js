@@ -1,4 +1,5 @@
 import React from 'react';
+import { BsCartPlus, BsCartDash } from 'react-icons/bs';
 import PropTypes from 'prop-types';
 
 class Teste extends React.Component {
@@ -32,28 +33,33 @@ class Teste extends React.Component {
         <p data-testid="shopping-cart-product-name">{ elem.title }</p>
         <img src={ elem.thumbnail } alt="Imagem" className="img-card" />
         <p>{ elem.price }</p>
-        <button
-          id={ elem.id }
-          data-testid="product-decrease-quantity"
-          type="button"
-          disabled={ contador < 1 }
-          onClick={ this.handleClickMenos }
-        >
-          -
-        </button>
-        <p data-testid="shopping-cart-product-quantity">{ contador }</p>
-        <button
-          id={ elem.id }
-          data-testid="product-increase-quantity"
-          type="button"
-          onClick={ this.handleClickMais }
-        >
-          +
-        </button>
+        <div className="div-add-sub">
+          <button
+            id={ elem.id }
+            data-testid="product-decrease-quantity"
+            type="button"
+            disabled={ contador < 1 }
+            onClick={ this.handleClickMenos }
+            className="add"
+          >
+            <BsCartDash />
+          </button>
+          <p data-testid="shopping-cart-product-quantity">{ contador }</p>
+          <button
+            id={ elem.id }
+            data-testid="product-increase-quantity"
+            type="button"
+            onClick={ this.handleClickMais }
+            className="sub"
+          >
+            <BsCartPlus />
+          </button>
+        </div>
         <div>
           <button
             type="button"
             onClick={ () => cardUpdate(elem) }
+            className="remove"
           >
             Remover
           </button>

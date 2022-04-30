@@ -22,14 +22,21 @@ class SideBarCategorias extends Component {
     const { categorias } = this.state;
     const { handleChange } = this.props;
     return categorias.map((categoria, index) => (
-      <label htmlFor={ categoria.id } key={ index } data-testid="category">
-        { categoria.name }
-        <input
-          type="radio"
+      <label
+        htmlFor={ categoria.id }
+        key={ index }
+        data-testid="category"
+        className="label-side-bar"
+      >
+        <button
+          type="button"
           name="categorias"
           id={ categoria.id }
-          onChange={ handleChange }
-        />
+          onClick={ handleChange }
+          className="sideBar-btn"
+        >
+          { categoria.name }
+        </button>
       </label>
     ));
   }
