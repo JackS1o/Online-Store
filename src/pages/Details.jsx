@@ -102,6 +102,9 @@ class Details extends Component {
     const ratingStars = ['1', '2', '3', '4', '5'];
     return (
       <div>
+        <header>
+          <h1>Detalhes do Produto</h1>
+        </header>
         <div className="div-mae-details">
           <div className="card-details">
             <p data-testid="product-detail-name">

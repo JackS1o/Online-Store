@@ -1,8 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #D0F3FF;
@@ -94,7 +92,7 @@ code {
   justify-self: center;
   justify-items: center;
   grid-area: produtos;
-  margin-top: 40%;
+  margin-top: 35%;
   height: 70px;
   width: 70px;
   border-radius: 50%;
@@ -230,12 +228,17 @@ code {
 }
 
 .details {
+  display: flex;
+  flex-direction: column;
   grid-area: details;
+  background: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .div-mae-details {
   display: grid;
-  grid: "card details" / 2fr 3fr;
+  grid: "vazio card details" / 1fr 2fr 3fr;
+  margin-top: 3%;
 }
 
 .rating-form-container {
