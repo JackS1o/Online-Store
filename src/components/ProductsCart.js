@@ -1,5 +1,5 @@
 import React from 'react';
-import { BsCartPlus, BsCartDash } from 'react-icons/bs';
+import { BsCartPlus, BsCartDash, BsCartX } from 'react-icons/bs';
 import PropTypes from 'prop-types';
 
 class Teste extends React.Component {
@@ -30,9 +30,9 @@ class Teste extends React.Component {
       <div
         className="card-carrinho"
       >
-        <p data-testid="shopping-cart-product-name">{ elem.title }</p>
+        <p data-testid="shopping-cart-product-name" className="title">{ elem.title }</p>
         <img src={ elem.thumbnail } alt="Imagem" className="img-card" />
-        <p>{ elem.price }</p>
+        <p className="price">{ elem.price }</p>
         <div className="div-add-sub">
           <button
             id={ elem.id }
@@ -62,6 +62,7 @@ class Teste extends React.Component {
             className="remove"
           >
             Remover
+            <BsCartX />
           </button>
         </div>
       </div>

@@ -102,28 +102,32 @@ class Details extends Component {
     const ratingStars = ['1', '2', '3', '4', '5'];
     return (
       <div>
-        <p data-testid="product-detail-name">
-          { product.title }
-        </p>
-        <img src={ product.thumbnail } alt="Imagem" className="img-card-details" />
-        <p>{ product.price }</p>
-        <Link to="/ShoppingCart">
-          <button
-            type="button"
-            onClick={ () => handleClick(product) }
-            data-testid="product-detail-add-to-cart"
-          >
-            Adicionar ao carrinho
+        <div className="div-mae-details">
+          <div className="card-details">
+            <p data-testid="product-detail-name">
+              { product.title }
+            </p>
+            <img src={ product.thumbnail } alt="Imagem" className="img-card-details" />
+            <p>{ product.price }</p>
+            <Link to="/ShoppingCart">
+              <button
+                className="add-Carrinho"
+                type="button"
+                onClick={ () => handleClick(product) }
+                data-testid="product-detail-add-to-cart"
+              >
+                Adicionar ao carrinho
 
-          </button>
-        </Link>
-        <hr />
-        <div>
-          {atributo.map((atribut, index) => (
-            <div key={ index }>
-              <span>{`${atribut.name}: ${atribut.value_name}`}</span>
-            </div>
-          ))}
+              </button>
+            </Link>
+          </div>
+          <div className="details">
+            {atributo.map((atribut, index) => (
+              <div key={ index }>
+                <span>{`${atribut.name}: ${atribut.value_name}`}</span>
+              </div>
+            ))}
+          </div>
         </div>
         <div className="rating-form-container">
           <form className="rating-form">

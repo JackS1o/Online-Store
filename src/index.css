@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgba(236, 233, 233, 0.897);
+  background-color: #D0F3FF;
 }
 
 code {
@@ -25,7 +25,7 @@ code {
 .label-input, header {
   display: flex;
   justify-content: center;
-  background-color: #4e94aa;
+  background-color: #0B54B7;
   color: white;
 }
 
@@ -45,10 +45,11 @@ code {
 .notFound {
   display: flex;
   justify-content: center;
+  margin-top: 10%;
   grid-area: produtos;
 }
 
-.div-card, .card-carrinho {
+.div-card, .card-carrinho, .card-details {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,7 +61,14 @@ code {
   width: 200px;
 }
 
+.title, .price {
+  text-align: center;
+  text-decoration-color: black;
+  text-decoration: none;
+}
+
 .img-card {
+  justify-self: center;
   height: 100px;
   width: 100px;
 }
@@ -84,8 +92,20 @@ code {
 .div-load {
   display: flex;
   justify-self: center;
-  padding-top: 20%;
+  justify-items: center;
   grid-area: produtos;
+  margin-top: 40%;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  border: 5px solid transparent;
+  border-top: 5px solid #0B54B7;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .div-add-sub {
@@ -104,6 +124,16 @@ code {
   height: 50px;
 }
 
+.sub:hover {
+  color: blue;
+  transform: scale(1.2);
+}
+
+.add:hover {
+  color: red;
+  transform: scale(1.2);
+}
+
 .remove {
   border: 0ch;
   border-radius: 10px;
@@ -119,7 +149,6 @@ code {
   box-shadow: none;
   background: #1495bd;
   color: white;
-  margin-bottom: 2px;
   height: 30px;
 }
 
@@ -132,7 +161,8 @@ code {
   text-align: center;
   line-height: 1;
   font-size: 15px;
-  background-color : #4e94aa;
+  font-weight: 600;
+  background-color : #0B54B7;
   padding: 10px;
   outline: none;
   /* border-radius: 4px; */
@@ -140,7 +170,18 @@ code {
 }
 .sideBar-btn:hover {
   color: black;
+  font-weight: 600;
   background-color: #fff;
+}
+
+.add-Carrinho:hover, .finalizar:hover {
+  color: white;
+  background-color: #1551d3;
+}
+
+.remove:hover {
+  color: white;
+  background-color: #f80404ec;
 }
 
 .search-input {
@@ -151,12 +192,19 @@ code {
 }
 
 .search-btn {
-  background: #0c329c;
+  background: #042683;
   border: 0ch;
   border-radius: 10px;
   color: white;
   grid-area: btn;
+  margin-left: 2px;
   width: 80%;
+}
+
+.search-btn:hover {
+  color: white;
+  background-color: #0400ff8c;
+  transform: scale(1.02);
 }
 
 .link-card {
@@ -170,4 +218,28 @@ code {
 .link-back-card {
   color: rgb(0, 0, 0);
   font-size: 20px;
+}
+
+.link-card:hover, .link-back-card:hover {
+  color: rgb(0, 0, 0);
+  transform: scale(1.2);
+}
+
+.card-details {
+  grid-area: card;
+}
+
+.details {
+  grid-area: details;
+}
+
+.div-mae-details {
+  display: grid;
+  grid: "card details" / 2fr 3fr;
+}
+
+.rating-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
 }
