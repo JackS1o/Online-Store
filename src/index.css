@@ -106,7 +106,7 @@ code {
   100% { transform: rotate(360deg); }
 }
 
-.div-add-sub {
+.div-add-sub, .h2-avaliacao {
   display: flex;
   justify-content: center;
   justify-items: center;
@@ -232,17 +232,60 @@ code {
   flex-direction: column;
   grid-area: details;
   background: white;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
-.div-mae-details {
+.div-mae-details, .feedback {
   display: grid;
   grid: "vazio card details" / 1fr 2fr 3fr;
   margin-top: 3%;
+  background-color: white;
 }
 
 .rating-form-container {
   display: flex;
   flex-direction: column;
   justify-items: center;
+}
+
+.rating-form {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+textarea {
+  resize: none;
+}
+
+.label-rate, .label-email, .label-text-area {
+  padding: 2%;
+}
+
+.label-text-area {
+  display: flex;
+  align-items: center;
+  font-family: 'Josefin Sans', sans-seri;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.evaluation-btn {
+  background: rgb(70, 179, 70);
+  border-radius: 10px;
+  border: 0ch;
+  height: 30px;
+  width: 30%;
+  color: white;
+  font-size: larger;
+  font-weight: 700;
+}
+.evaluation-btn:hover {
+  background: rgb(2, 112, 2);
+}
+
+.p-evaluationSubmited {
+  font-size: large;
+  font-weight: 700;
 }

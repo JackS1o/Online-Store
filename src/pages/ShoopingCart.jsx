@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BsCart4, BsFillArrowLeftCircleFill } from 'react-icons/bs';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Teste from '../components/ProductsCart';
+import ProductCart from '../components/ProductsCart';
 
 class ShoppingCart extends Component {
   constructor() {
@@ -28,7 +28,7 @@ class ShoppingCart extends Component {
         && <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio.</h1>}
         <div className="div-mae-card-carrinho">
           {newArray.map((elem, index) => (
-            <Teste
+            <ProductCart
               elem={ elem }
               key={ index }
               productList={ productList }
