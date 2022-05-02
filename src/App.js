@@ -23,13 +23,10 @@ class App extends React.Component {
   cardUpdate = (x) => {
     const { productList } = this.state;
     const d = productList.filter((i) => i.id !== x.id);
-    console.log(d);
     this.setState({ productList: d });
   }
 
    handleSubmitClick = (email, rating, evaluation, evaluationSubmited, product) => {
-    // event.preventDefault();
-    // const { email, rating, evaluation, product } = this.state;
     const evaluationObj = {
       email,
       rating,
@@ -40,13 +37,7 @@ class App extends React.Component {
       evaluationSubmited: [...prevState.evaluationSubmited, evaluationObj],
     }), () => {
       const { evaluationSubmited } = this.state;
-      console.log(evaluationSubmited);
       localStorage.setItem('submited-rate', JSON.stringify(evaluationSubmited));
-      // this.setState({
-      //   email: '',
-      //   rating: '',
-      //   evaluation: '',
-      // });
     });
   }
 
@@ -54,7 +45,6 @@ class App extends React.Component {
     const evaluationSubmited = localStorage.getItem('submited-rate');
     if (evaluationSubmited) {
       const ratingElements = JSON.parse(evaluationSubmited);
-      console.log(ratingElements);
       this.setState({
         evaluationSubmited: ratingElements,
       });
@@ -93,7 +83,7 @@ class App extends React.Component {
               handleSubmitClick={ this.handleSubmitClick }
               evaluationSubmited={ evaluationSubmited }
               receiveEvaluationFromStorage={ this.receiveEvaluationFromStorage }
-              // evaluationSubmited={ evaluationSubmited }
+
             />) }
           />
         </Switch>

@@ -21,13 +21,6 @@ class Details extends Component {
 
   componentDidMount() {
     const { receiveEvaluationFromStorage } = this.props
-    // const evaluationSubmited = localStorage.getItem('submited-rate');
-    // if (evaluationSubmited) {
-    //   const ratingElements = evaluationSubmited.split(',');
-    //   this.setState({
-    //     evaluationSubmited: ratingElements,
-    //   });
-    // }
     receiveEvaluationFromStorage();
     this.getProduct();
   }
@@ -76,29 +69,6 @@ class Details extends Component {
     }
   }
 
-  // handleSubmitClick = (event) => {
-  //   event.preventDefault();
-  //   const { email, rating, evaluation, product } = this.state;
-  //   const evaluationObj = {
-  //     email,
-  //     rating,
-  //     evaluation,
-  //     product: product.id,
-  //   }
-  //   this.setState((prevState) => ({
-  //     evaluationSubmited: [...prevState.evaluationSubmited, evaluationObj],
-  //   }), () => {
-  //     const { evaluationSubmited } = this.state;
-  //     console.log(evaluationSubmited);
-  //     localStorage.setItem('submited-rate', evaluationSubmited);
-  //     this.setState({
-  //       email: '',
-  //       rating: '',
-  //       evaluation: '',
-  //     });
-  //   });
-  // }
-
   cardConstructor = () => {
     const { handleClick, handleSubmitClick, evaluationSubmited, } = this.props;
     const { product,
@@ -110,7 +80,6 @@ class Details extends Component {
     } = this.state;
     const ratingStars = ['1', '2', '3', '4', '5'];
     const productEvaluations = evaluationSubmited.filter((evaluation) => evaluation.productID === product.id);
-    console.log(productEvaluations);
     return (
       <div>
         <header>
