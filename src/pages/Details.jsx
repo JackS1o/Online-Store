@@ -102,33 +102,40 @@ class Details extends Component {
     const ratingStars = ['1', '2', '3', '4', '5'];
     return (
       <div>
-        <p data-testid="product-detail-name">
-          { product.title }
-        </p>
-        <img src={ product.thumbnail } alt="Imagem" className="img-card-details" />
-        <p>{ product.price }</p>
-        <Link to="/ShoppingCart">
-          <button
-            type="button"
-            onClick={ () => handleClick(product) }
-            data-testid="product-detail-add-to-cart"
-          >
-            Adicionar ao carrinho
+        <header>
+          <h1>Detalhes do Produto</h1>
+        </header>
+        <div className="div-mae-details">
+          <div className="card-details">
+            <p data-testid="product-detail-name">
+              { product.title }
+            </p>
+            <img src={ product.thumbnail } alt="Imagem" className="img-card-details" />
+            <p>{ product.price }</p>
+            <Link to="/ShoppingCart">
+              <button
+                className="add-Carrinho"
+                type="button"
+                onClick={ () => handleClick(product) }
+                data-testid="product-detail-add-to-cart"
+              >
+                Adicionar ao carrinho
 
-          </button>
-        </Link>
-        <hr />
-        <div>
-          {atributo.map((atribut, index) => (
-            <div key={ index }>
-              <span>{`${atribut.name}: ${atribut.value_name}`}</span>
-            </div>
-          ))}
+              </button>
+            </Link>
+          </div>
+          <div className="details">
+            {atributo.map((atribut, index) => (
+              <div key={ index }>
+                <span>{`${atribut.name}: ${atribut.value_name}`}</span>
+              </div>
+            ))}
+          </div>
         </div>
         <div className="rating-form-container">
           <form className="rating-form">
-            <h2>Avalie este produto!</h2>
-            <label htmlFor="email">
+            <h2 className="h2-avaliacao">Avalie este produto!</h2>
+            <label htmlFor="email" className="label-email">
               E-mail
               <input
                 type="email"
@@ -140,23 +147,25 @@ class Details extends Component {
                 value={ email }
               />
             </label>
-            {ratingStars.map((rate, index) => (
-              <label
-                htmlFor={ rate }
-                key={ index }
-              >
-                <BsFillStarFill />
-                <input
-                  id={ rate }
-                  type="radio"
-                  data-testid={ `${index + 1}-rating` }
-                  name="rate"
-                  value={ rate }
-                  onChange={ this.handleRateChange }
-                />
-              </label>
-            ))}
-            <label htmlFor="evaluation">
+            <div className="label-rate">
+              {ratingStars.map((rate, index) => (
+                <label
+                  htmlFor={ rate }
+                  key={ index }
+                >
+                  <BsFillStarFill />
+                  <input
+                    id={ rate }
+                    type="radio"
+                    data-testid={ `${index + 1}-rating` }
+                    name="rate"
+                    value={ rate }
+                    onChange={ this.handleRateChange }
+                  />
+                </label>
+              ))}
+            </div>
+            <label htmlFor="evaluation" className="label-text-area">
               Adicione um comentário:
               <textarea
                 id="evaluation"
@@ -170,6 +179,7 @@ class Details extends Component {
               />
             </label>
             <button
+              className="evaluation-btn"
               type="submit"
               data-testid="submit-review-btn"
               disabled={ disabled }
@@ -179,7 +189,7 @@ class Details extends Component {
             </button>
           </form>
           <div>
-            <div>
+            <div className="feedback">
               { evaluationSubmited ? (
                 <div>
                   <h3>Email:</h3>

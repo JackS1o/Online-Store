@@ -1,11 +1,9 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgba(236, 233, 233, 0.897);
+  background-color: #D0F3FF;
 }
 
 code {
@@ -16,6 +14,8 @@ code {
 .sideBar {
   display: flex;
   flex-direction: column;
+  grid-area: categoria;
+  /* gap: 2px 1px; */
   width: 250px;
 }
 
@@ -23,13 +23,31 @@ code {
 .label-input, header {
   display: flex;
   justify-content: center;
+  background-color: #0B54B7;
+  color: white;
+}
+
+.label-input {
+  display: grid;
+  grid: "vazio search btn car"
+  / 1fr 2fr 1fr 1fr
 }
 
 .cardItems-sideBar {
-  display: flex;
+  display: grid;
+  grid: "categoria produtos"
+  / 1fr 3fr
+
 }
 
-.div-card, .card-carrinho {
+.notFound {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+  grid-area: produtos;
+}
+
+.div-card, .card-carrinho, .card-details {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,17 +55,25 @@ code {
   border: 1px solid rgba(109, 91, 91, 0);
   border-radius: 5%;
   background-color: white;
-  height: 300px;
+  /* height: 300px; */
   width: 200px;
 }
 
+.title, .price {
+  text-align: center;
+  text-decoration-color: black;
+  text-decoration: none;
+}
+
 .img-card {
+  justify-self: center;
   height: 100px;
   width: 100px;
 }
 
 .cardItems {
   display: flex;
+
 }
 
 .div-mae-card, .div-mae-card-carrinho {
@@ -57,7 +83,209 @@ code {
   gap: 20px 20px;
 }
 
+.div-mae-card {
+  grid-area: produtos;
+}
+
 .div-load {
-  margin-left: 20%;
-  align-self: center;
+  display: flex;
+  justify-self: center;
+  justify-items: center;
+  grid-area: produtos;
+  margin-top: 35%;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  border: 5px solid transparent;
+  border-top: 5px solid #0B54B7;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.div-add-sub, .h2-avaliacao {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.add, .sub {
+  border: 0ch;
+  /* border-radius: 50%; */
+  background: #2e79a500;
+  color: black;
+  font-size: 20px;
+  height: 50px;
+}
+
+.sub:hover {
+  color: blue;
+  transform: scale(1.2);
+}
+
+.add:hover {
+  color: red;
+  transform: scale(1.2);
+}
+
+.remove {
+  border: 0ch;
+  border-radius: 10px;
+  background: #d1191991;
+  color: white;
+  bottom: 1px;
+  height: 25px;
+}
+
+.add-Carrinho, .finalizar {
+  border: 0ch;
+  border-radius: 10px;
+  box-shadow: none;
+  background: #1495bd;
+  color: white;
+  height: 30px;
+}
+
+.sideBar-btn {
+  transition: all .5s ease;
+  color: #fff;
+  border: 3px solid #4e95aa00;
+  font-family:'Montserrat', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+  font-size: 15px;
+  font-weight: 600;
+  background-color : #0B54B7;
+  padding: 10px;
+  outline: none;
+  /* border-radius: 4px; */
+  width: 100%;
+}
+.sideBar-btn:hover {
+  color: black;
+  font-weight: 600;
+  background-color: #fff;
+}
+
+.add-Carrinho:hover, .finalizar:hover {
+  color: white;
+  background-color: #1551d3;
+}
+
+.remove:hover {
+  color: white;
+  background-color: #f80404ec;
+}
+
+.search-input {
+  border: 0ch;
+  border-radius: 10px;
+  grid-area: search;
+  height: 30px;
+}
+
+.search-btn {
+  background: #042683;
+  border: 0ch;
+  border-radius: 10px;
+  color: white;
+  grid-area: btn;
+  margin-left: 2px;
+  width: 80%;
+}
+
+.search-btn:hover {
+  color: white;
+  background-color: #0400ff8c;
+  transform: scale(1.02);
+}
+
+.link-card {
+  display: flex;
+  justify-content: center;
+  grid-area: car;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+}
+
+.link-back-card {
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+}
+
+.link-card:hover, .link-back-card:hover {
+  color: rgb(0, 0, 0);
+  transform: scale(1.2);
+}
+
+.card-details {
+  grid-area: card;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  grid-area: details;
+  background: white;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.div-mae-details, .feedback {
+  display: grid;
+  grid: "vazio card details" / 1fr 2fr 3fr;
+  margin-top: 3%;
+  background-color: white;
+}
+
+.rating-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}
+
+.rating-form {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+textarea {
+  resize: none;
+}
+
+.label-rate, .label-email, .label-text-area {
+  padding: 2%;
+}
+
+.label-text-area {
+  display: flex;
+  align-items: center;
+  font-family: 'Josefin Sans', sans-seri;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.evaluation-btn {
+  background: rgb(70, 179, 70);
+  border-radius: 10px;
+  border: 0ch;
+  height: 30px;
+  width: 30%;
+  color: white;
+  font-size: larger;
+  font-weight: 700;
+}
+.evaluation-btn:hover {
+  background: rgb(2, 112, 2);
+}
+
+.p-evaluationSubmited {
+  font-size: large;
+  font-weight: 700;
 }
