@@ -20,13 +20,15 @@ class Details extends Component {
   }
 
   componentDidMount() {
-    const evaluationSubmited = localStorage.getItem('submited-rate');
-    if (evaluationSubmited) {
-      const ratingElements = evaluationSubmited.split(',');
-      this.setState({
-        evaluationSubmited: ratingElements,
-      });
-    }
+    const { receiveEvaluationFromStorage } = this.props
+    // const evaluationSubmited = localStorage.getItem('submited-rate');
+    // if (evaluationSubmited) {
+    //   const ratingElements = evaluationSubmited.split(',');
+    //   this.setState({
+    //     evaluationSubmited: ratingElements,
+    //   });
+    // }
+    receiveEvaluationFromStorage();
     this.getProduct();
   }
 
@@ -74,32 +76,41 @@ class Details extends Component {
     }
   }
 
-  handleSubmitClick = (event) => {
-    event.preventDefault();
-    const { email, rating, evaluation } = this.state;
-    this.setState({
-      evaluationSubmited: [email, rating, evaluation],
-    }, () => {
-      const { evaluationSubmited } = this.state;
-      localStorage.setItem('submited-rate', evaluationSubmited);
-      this.setState({
-        email: '',
-        rating: '',
-        evaluation: '',
-      });
-    });
-  }
+  // handleSubmitClick = (event) => {
+  //   event.preventDefault();
+  //   const { email, rating, evaluation, product } = this.state;
+  //   const evaluationObj = {
+  //     email,
+  //     rating,
+  //     evaluation,
+  //     product: product.id,
+  //   }
+  //   this.setState((prevState) => ({
+  //     evaluationSubmited: [...prevState.evaluationSubmited, evaluationObj],
+  //   }), () => {
+  //     const { evaluationSubmited } = this.state;
+  //     console.log(evaluationSubmited);
+  //     localStorage.setItem('submited-rate', evaluationSubmited);
+  //     this.setState({
+  //       email: '',
+  //       rating: '',
+  //       evaluation: '',
+  //     });
+  //   });
+  // }
 
   cardConstructor = () => {
-    const { handleClick } = this.props;
+    const { handleClick, handleSubmitClick, evaluationSubmited, } = this.props;
     const { product,
       atributo,
       disabled,
       email,
+      rating,
       evaluation,
-      evaluationSubmited,
     } = this.state;
     const ratingStars = ['1', '2', '3', '4', '5'];
+    const productEvaluations = evaluationSubmited.filter((evaluation) => evaluation.productID === product.id);
+    console.log(productEvaluations);
     return (
       <div>
         <header>
@@ -180,30 +191,40 @@ class Details extends Component {
             </label>
             <button
               className="evaluation-btn"
-              type="submit"
+              type="button"
               data-testid="submit-review-btn"
               disabled={ disabled }
-              onClick={ this.handleSubmitClick }
+              onClick={ () => {
+                handleSubmitClick(email,rating, evaluation, evaluationSubmited, product);
+                  this.setState({
+                    email: '',
+                    rating: '',
+                    evaluation: '',
+                  });
+              } }
             >
               Enviar Avaliação!
             </button>
           </form>
           <div>
             <div className="feedback">
-              { evaluationSubmited ? (
-                <div>
-                  <h3>Email:</h3>
-                  <p>{ evaluationSubmited[0] }</p>
-                  <h3>Nota:</h3>
-                  <p>{ evaluationSubmited[1] }</p>
-                  <h3>Avaliação:</h3>
-                  <p>{ evaluationSubmited[2] }</p>
-                </div>
-              )
-                : (
+              { productEvaluations.length === 0 ? (
                   <span>
                     Produto sem avaliações!
                   </span>
+              )
+                : (
+                  productEvaluations.map((evaluation, index) => {
+                  return (
+                  <div key={index}>
+                    <h3>Email:</h3>
+                    <p>{ evaluation.email}</p>
+                    <h3>Nota:</h3>
+                    <p>{ evaluation.rating }</p>
+                    <h3>Avaliação:</h3>
+                    <p>{ evaluation.evaluation }</p>
+                  </div>
+                  )})
                 )}
             </div>
           </div>
