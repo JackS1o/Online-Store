@@ -2,7 +2,7 @@ import React from 'react';
 import { BsCartPlus, BsCartDash, BsCartX } from 'react-icons/bs';
 import PropTypes from 'prop-types';
 
-class Teste extends React.Component {
+class ProductsCart extends React.Component {
   constructor() {
     super();
 
@@ -70,7 +70,7 @@ class Teste extends React.Component {
   }
 }
 
-Teste.propTypes = {
+ProductsCart.propTypes = {
   elem: PropTypes.shape({
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
@@ -86,4 +86,4 @@ Teste.propTypes = {
   cardUpdate: PropTypes.func.isRequired,
 };
 
-export default Teste;
+export default ProductsCart;

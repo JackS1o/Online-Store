@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class Checkout extends Component {
   constructor() {
@@ -11,29 +12,41 @@ class Checkout extends Component {
       telefone: '',
       cep: '',
       address: '',
+      disabled: true,
+      redirect: false,
     };
+  }
+
+  handleClick = (event) => {
+    event.preventDefault();
+    this.setState({ redirect: true });
+  }
+
+  verificatioInput = () => {
+    const { name, email, cpf, telefone, cep, address } = this.state;
+    if (name.length > 0 && email.length > 0
+      && cpf.length > 0 && telefone.length > 0 && cep.length > 0 && address.length > 0) {
+      this.setState({ disabled: false });
+    } else {
+      this.setState({ disabled: true });
+    }
   }
 
   handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({
       [name]: value,
+    }, () => {
+      this.verificatioInput();
     });
   }
 
   render() {
-    const { name, email, cpf, telefone, cep, address } = this.state;
+    const { name, email, cpf, telefone, cep, address, disabled, redirect } = this.state;
     return (
       <div className="checkout-container">
-        <form>
-          {/* <button
-            data-testid="checkout-products"
-            type="submit"
-          >
-            Finalizar Compra
-          </button> */}
+        <form className="form-checkout">
           <label htmlFor="nome-completo">
-            Nome Completo
             <input
               type="text"
               id="nome-completo"
@@ -41,10 +54,10 @@ class Checkout extends Component {
               value={ name }
               name="name"
               onChange={ this.handleChange }
+              placeholder="Nome Completo"
             />
           </label>
           <label htmlFor="email">
-            Email
             <input
               type="email"
               id="email"
@@ -52,10 +65,10 @@ class Checkout extends Component {
               value={ email }
               name="email"
               onChange={ this.handleChange }
+              placeholder="Email"
             />
           </label>
           <label htmlFor="cpf">
-            CPF
             <input
               type="text"
               id="cpf"
@@ -63,10 +76,10 @@ class Checkout extends Component {
               value={ cpf }
               name="cpf"
               onChange={ this.handleChange }
+              placeholder="CPF"
             />
           </label>
           <label htmlFor="telefone">
-            telefone
             <input
               type="tel"
               id="telefone"
@@ -74,10 +87,10 @@ class Checkout extends Component {
               value={ telefone }
               name="telefone"
               onChange={ this.handleChange }
+              placeholder="Telefone"
             />
           </label>
           <label htmlFor="cep">
-            CEP
             <input
               type="text"
               id="cep"
@@ -85,19 +98,29 @@ class Checkout extends Component {
               value={ cep }
               name="cep"
               onChange={ this.handleChange }
+              placeholder="CEP"
             />
           </label>
           <label htmlFor="address">
-            Endereço
             <input
               type="text"
               id="address"
-              data-testid="checkout-cep"
+              data-testid="checkout-address"
               value={ address }
               name="address"
               onChange={ this.handleChange }
+              placeholder="Endereço"
             />
           </label>
+          <button
+            onClick={ this.handleClick }
+            disabled={ disabled }
+            data-testid="checkout-products"
+            type="submit"
+          >
+            Finalizar Compra
+          </button>
+          { redirect && <Redirect to="/" />}
         </form>
       </div>
     );
