@@ -22,7 +22,6 @@ class App extends React.Component {
   cardUpdate = (x) => {
     const { productList } = this.state;
     const d = productList.filter((i) => i.id !== x.id);
-    console.log(d);
     this.setState({ productList: d });
   }
 
@@ -49,7 +48,15 @@ class App extends React.Component {
               renderState={ renderState }
             />) }
           />
-          <Route exact path="/Checkout" component={ Checkout } />
+          <Route
+            exact
+            path="/Checkout"
+            render={ (props) => (<Checkout
+              { ...props }
+              productList={ productList }
+              renderState={ renderState }
+            />) }
+          />
           <Route
             path="/details/:id"
             render={ (props) => (<Details
