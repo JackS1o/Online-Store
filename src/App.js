@@ -12,6 +12,7 @@ class App extends React.Component {
     this.state = {
       productList: [],
       renderState: [],
+      evaluationSubmited: [],
     };
   }
 
@@ -25,8 +26,33 @@ class App extends React.Component {
     this.setState({ productList: d });
   }
 
+   handleSubmitClick = (email, rating, evaluation, product) => {
+     const evaluationObj = {
+       email,
+       rating,
+       evaluation,
+       productID: product.id,
+     };
+     this.setState((prevState) => ({
+       evaluationSubmited: [...prevState.evaluationSubmited, evaluationObj],
+     }), () => {
+       const { evaluationSubmited } = this.state;
+       localStorage.setItem('submited-rate', JSON.stringify(evaluationSubmited));
+     });
+   }
+
+  receiveEvaluationFromStorage = () => {
+    const evaluationSubmited = localStorage.getItem('submited-rate');
+    if (evaluationSubmited) {
+      const ratingElements = JSON.parse(evaluationSubmited);
+      this.setState({
+        evaluationSubmited: ratingElements,
+      });
+    }
+  }
+
   render() {
-    const { productList, renderState } = this.state;
+    const { productList, renderState, evaluationSubmited } = this.state;
     return (
       <BrowserRouter>
         <Switch>
@@ -62,6 +88,10 @@ class App extends React.Component {
             render={ (props) => (<Details
               { ...props }
               handleClick={ this.handleClick }
+              handleSubmitClick={ this.handleSubmitClick }
+              evaluationSubmited={ evaluationSubmited }
+              receiveEvaluationFromStorage={ this.receiveEvaluationFromStorage }
+
             />) }
           />
         </Switch>
