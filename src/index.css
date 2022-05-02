@@ -17,6 +17,7 @@ code {
   grid-area: categoria;
   /* gap: 2px 1px; */
   width: 250px;
+  overflow-y: scroll;
 }
 
 
@@ -34,10 +35,10 @@ code {
 }
 
 .cardItems-sideBar {
+  height: 100vh;
   display: grid;
   grid: "categoria produtos"
   / 1fr 3fr
-
 }
 
 .notFound {
