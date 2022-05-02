@@ -26,20 +26,20 @@ class App extends React.Component {
     this.setState({ productList: d });
   }
 
-   handleSubmitClick = (email, rating, evaluation, evaluationSubmited, product) => {
-    const evaluationObj = {
-      email,
-      rating,
-      evaluation,
-      productID: product.id,
-    }
-    this.setState((prevState) => ({
-      evaluationSubmited: [...prevState.evaluationSubmited, evaluationObj],
-    }), () => {
-      const { evaluationSubmited } = this.state;
-      localStorage.setItem('submited-rate', JSON.stringify(evaluationSubmited));
-    });
-  }
+   handleSubmitClick = (email, rating, evaluation, product) => {
+     const evaluationObj = {
+       email,
+       rating,
+       evaluation,
+       productID: product.id,
+     };
+     this.setState((prevState) => ({
+       evaluationSubmited: [...prevState.evaluationSubmited, evaluationObj],
+     }), () => {
+       const { evaluationSubmited } = this.state;
+       localStorage.setItem('submited-rate', JSON.stringify(evaluationSubmited));
+     });
+   }
 
   receiveEvaluationFromStorage = () => {
     const evaluationSubmited = localStorage.getItem('submited-rate');

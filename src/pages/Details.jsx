@@ -15,12 +15,11 @@ class Details extends Component {
       email: '',
       rating: '',
       evaluation: '',
-      evaluationSubmited: [],
     };
   }
 
   componentDidMount() {
-    const { receiveEvaluationFromStorage } = this.props
+    const { receiveEvaluationFromStorage } = this.props;
     receiveEvaluationFromStorage();
     this.getProduct();
   }
@@ -70,7 +69,7 @@ class Details extends Component {
   }
 
   cardConstructor = () => {
-    const { handleClick, handleSubmitClick, evaluationSubmited, } = this.props;
+    const { handleClick, handleSubmitClick, evaluationSubmited } = this.props;
     const { product,
       atributo,
       disabled,
@@ -79,7 +78,9 @@ class Details extends Component {
       evaluation,
     } = this.state;
     const ratingStars = ['1', '2', '3', '4', '5'];
-    const productEvaluations = evaluationSubmited.filter((evaluation) => evaluation.productID === product.id);
+    const productEvaluations = evaluationSubmited.filter(
+      (evaluations) => evaluations.productID === product.id,
+    );
     return (
       <div>
         <header>
@@ -164,12 +165,12 @@ class Details extends Component {
               data-testid="submit-review-btn"
               disabled={ disabled }
               onClick={ () => {
-                handleSubmitClick(email,rating, evaluation, evaluationSubmited, product);
-                  this.setState({
-                    email: '',
-                    rating: '',
-                    evaluation: '',
-                  });
+                handleSubmitClick(email, rating, evaluation, product);
+                this.setState({
+                  email: '',
+                  rating: '',
+                  evaluation: '',
+                });
               } }
             >
               Enviar Avaliação!
@@ -178,22 +179,21 @@ class Details extends Component {
           <div>
             <div className="feedback">
               { productEvaluations.length === 0 ? (
-                  <span>
-                    Produto sem avaliações!
-                  </span>
+                <span>
+                  Produto sem avaliações!
+                </span>
               )
                 : (
-                  productEvaluations.map((evaluation, index) => {
-                  return (
-                  <div key={index}>
-                    <h3>Email:</h3>
-                    <p>{ evaluation.email}</p>
-                    <h3>Nota:</h3>
-                    <p>{ evaluation.rating }</p>
-                    <h3>Avaliação:</h3>
-                    <p>{ evaluation.evaluation }</p>
-                  </div>
-                  )})
+                  productEvaluations.map((evaluations, index) => (
+                    <div key={ index }>
+                      <h3>Email:</h3>
+                      <p>{ evaluations.email}</p>
+                      <h3>Nota:</h3>
+                      <p>{ evaluations.rating }</p>
+                      <h3>Avaliação:</h3>
+                      <p>{ evaluations.evaluation }</p>
+                    </div>
+                  ))
                 )}
             </div>
           </div>
@@ -218,6 +218,9 @@ Details.propTypes = {
     }),
   }).isRequired,
   handleClick: PropTypes.func.isRequired,
+  handleSubmitClick: PropTypes.func.isRequired,
+  evaluationSubmited: PropTypes.arrayOf(Object).isRequired,
+  receiveEvaluationFromStorage: PropTypes.func.isRequired,
 };
 
 export default Details;
