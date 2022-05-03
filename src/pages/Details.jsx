@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { BsFillStarFill } from 'react-icons/bs';
+import { BsFillStarFill, BsCart4 } from 'react-icons/bs';
 import { getProductById } from '../services/api';
 
 class Details extends Component {
@@ -69,7 +69,8 @@ class Details extends Component {
   }
 
   cardConstructor = () => {
-    const { handleClick, handleSubmitClick, evaluationSubmited } = this.props;
+    const { handleClick, handleSubmitClick,
+      evaluationSubmited, productList } = this.props;
     const { product,
       atributo,
       disabled,
@@ -83,8 +84,16 @@ class Details extends Component {
     );
     return (
       <div>
-        <header>
-          <h1>Detalhes do Produto</h1>
+        <header className="header-details">
+          <h1 className="h1-details">Detalhes do Produto</h1>
+          <Link
+            to="/ShoppingCart"
+            className="link-card-details"
+            style={ { color: 'white', textDecoration: 'none' } }
+          >
+            <BsCart4 />
+            <p data-testid="shopping-cart-size">{productList.length}</p>
+          </Link>
         </header>
         <div className="div-mae-details">
           <div className="card-details">
@@ -93,17 +102,14 @@ class Details extends Component {
             </p>
             <img src={ product.thumbnail } alt="Imagem" className="img-card-details" />
             <p>{ product.price }</p>
-            <Link to="/ShoppingCart">
-              <button
-                className="add-Carrinho"
-                type="button"
-                onClick={ () => handleClick(product) }
-                data-testid="product-detail-add-to-cart"
-              >
-                Adicionar ao carrinho
-
-              </button>
-            </Link>
+            <button
+              className="add-Carrinho"
+              type="button"
+              onClick={ () => handleClick(product) }
+              data-testid="product-detail-add-to-cart"
+            >
+              Adicionar ao carrinho
+            </button>
           </div>
           <div className="details">
             {atributo.map((atribut, index) => (
@@ -221,6 +227,7 @@ Details.propTypes = {
   handleSubmitClick: PropTypes.func.isRequired,
   evaluationSubmited: PropTypes.arrayOf(Object).isRequired,
   receiveEvaluationFromStorage: PropTypes.func.isRequired,
+  productList: PropTypes.arrayOf(Object).isRequired,
 };
 
 export default Details;

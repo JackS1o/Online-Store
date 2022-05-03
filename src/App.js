@@ -10,14 +10,17 @@ class App extends React.Component {
     super();
 
     this.state = {
-      productList: [],
+      productList: JSON.parse(localStorage.getItem('itemsCart')) || [],
       renderState: [],
       evaluationSubmited: [],
     };
   }
 
   handleClick = (elem) => {
-    this.setState((prev) => ({ productList: [...prev.productList, elem] }));
+    this.setState((prev) => ({ productList: [...prev.productList, elem] }), () => {
+      const { productList } = this.state;
+      localStorage.setItem('itemsCart', JSON.stringify(productList));
+    });
   }
 
   cardUpdate = (x) => {
@@ -61,6 +64,7 @@ class App extends React.Component {
             path="/"
             render={ (props) => (<ProductsSearch
               { ...props }
+              productList={ productList }
               handleClick={ this.handleClick }
             />) }
           />
@@ -87,11 +91,11 @@ class App extends React.Component {
             path="/details/:id"
             render={ (props) => (<Details
               { ...props }
+              productList={ productList }
               handleClick={ this.handleClick }
               handleSubmitClick={ this.handleSubmitClick }
               evaluationSubmited={ evaluationSubmited }
               receiveEvaluationFromStorage={ this.receiveEvaluationFromStorage }
-
             />) }
           />
         </Switch>

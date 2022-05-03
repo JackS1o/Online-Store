@@ -212,9 +212,11 @@ code {
 
 .link-card {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   grid-area: car;
   color: rgb(0, 0, 0);
+  height: 30px;
   font-size: 20px;
 }
 
@@ -311,4 +313,29 @@ textarea {
   border: 0ch;
   background: #D0F3FF;
   color: #D0F3FF;
+}
+
+.header-details {
+  display: grid;
+  grid: "vazio title carrinho"
+  / 1fr 3fr 1fr;
+}
+
+.h1-details {
+  display: flex;
+  justify-content: center;
+  grid-area: title;
+  align-self: center;
+}
+
+.link-card-details {
+  display: flex;
+  justify-content: center;
+  grid-area: carrinho;
+  color: white;
+  font-size: 20px;
+}
+
+.p-carrinho {
+  font-size: 15px;
 }
