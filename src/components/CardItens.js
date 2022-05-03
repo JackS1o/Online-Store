@@ -16,7 +16,11 @@ class CardItens extends Component {
       <div className="div-mae-card">
         {searchItens.map((item, index) => (
           <div key={ index } data-testid="product" className="div-card">
-            <Link to={ `/details/${item.id}` } data-testid="product-detail-link">
+            <Link
+              to={ `/details/${item.id}` }
+              data-testid="product-detail-link"
+              style={ { color: 'black', textDecoration: 'none' } }
+            >
               <p className="title">{ item.title }</p>
               <img src={ item.thumbnail } alt="Imagem" className="img-card" />
               <p className="price">{ item.price }</p>

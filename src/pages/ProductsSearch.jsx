@@ -55,7 +55,7 @@ class ProductsSearch extends Component {
   }
 
   render() {
-    const { handleClick } = this.props;
+    const { handleClick, productList } = this.props;
     const { inputValue, searchItens, notFound, load } = this.state;
     return (
       <div className="search-page">
@@ -88,8 +88,15 @@ class ProductsSearch extends Component {
             className="link-card"
             to="/ShoppingCart"
             data-testid="shopping-cart-button"
+            style={ { color: 'white', textDecoration: 'none' } }
           >
             <BsCart4 />
+            <p
+              className="p-carrinho"
+              data-testid="shopping-cart-size"
+            >
+              {productList.length}
+            </p>
           </Link>
         </label>
         <div className="cardItems-sideBar">
@@ -113,6 +120,7 @@ class ProductsSearch extends Component {
 
 ProductsSearch.propTypes = {
   handleClick: PropTypes.func.isRequired,
+  productList: PropTypes.arrayOf(Object).isRequired,
 };
 
 export default ProductsSearch;
