@@ -87,6 +87,7 @@ class Details extends Component {
         <header className="header-details">
           <h1 className="h1-details">Detalhes do Produto</h1>
           <Link
+            data-testid="shopping-cart-button"
             to="/ShoppingCart"
             className="link-card-details"
             style={ { color: 'white', textDecoration: 'none' } }
