@@ -19,6 +19,7 @@ class Checkout extends Component {
 
   handleClick = (event) => {
     event.preventDefault();
+
     this.setState({ redirect: true });
   }
 
